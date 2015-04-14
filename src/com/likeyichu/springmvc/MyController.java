@@ -18,26 +18,22 @@ import com.likeyichu.springmvc.bean.Book;
 public class MyController {
 	@Resource
 	private Book book;
-//	@Autowired
-//	private CacheManager cacheManager;
 	
 	@ResponseBody
 	@RequestMapping(value="/setPrice", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
-	public Book setBwg(HttpServletRequest request, HttpServletResponse response){
+	//没有从对象到序列化内容的处理，这里会出错：
+	//The resource identified by this request is only capable of generating responses with characteristics not acceptable according to the request "accept" headers.
+	public Book fun(HttpServletRequest request, HttpServletResponse response){
 		Double price=Double.valueOf(request.getParameter("price"));
 		book.setPrice(price);
 		return book;
 	}
-	/*
+	
 	@ResponseBody
-	@RequestMapping(value="/removeblockip", method = {RequestMethod.POST}, produces="application/json;charset=UTF-8")
-	public String removeblockip(@RequestParam String ip, HttpServletRequest request, HttpServletResponse response){
-		String result = null;
-		try{
-			 result = bwgService.removeblockip(ip);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return result;
-	}*/
+	@RequestMapping(value="/setPrice2", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
+	public String fun2(HttpServletRequest request, HttpServletResponse response){
+		Double price=Double.valueOf(request.getParameter("price"));
+		book.setPrice(price);
+		return price.toString();
+	}
 }

@@ -2,7 +2,9 @@ package com.likeyichu.springmvc.bean;
 
 import javax.annotation.Resource;
 
-@Resource
+import org.springframework.stereotype.Component;
+
+@Component
 public class Book {
 	private String name="Physics";
 	private double price=123;
